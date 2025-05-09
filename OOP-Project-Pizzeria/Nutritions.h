@@ -35,4 +35,6 @@ public:
 	double getCarbohydrates() const;
 	void addAllergy(ALLERGY allergy);
 	std::set<ALLERGY> getAllergies();
+	void add(Nutritions* n);
+	void info() const;
 };

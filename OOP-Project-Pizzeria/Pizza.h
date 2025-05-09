@@ -1,7 +1,8 @@
 #pragma once
 #include <string>
 #include <vector>
-#include "Ingredient.h"
+#include "Topping.h"
+#include "Base.h"
 
 using namespace std;
 
@@ -9,15 +10,26 @@ class Pizza {
 	string name;
 	int size;
 	double price;
-	Ingredient* base;
-	Ingredient** ingredients;
+	Base* base;
+	Topping** ingredients;
 public:
 	static const int MAX_INGREDIENTS;
 	Pizza(string name, double price, int size);
-	Pizza(string name, double price, int size, Ingredient* base);
-	Pizza(string name, double price, int size, Ingredient* base, Ingredient** ingredients);
+	Pizza(string name, double price, int size, Base* base);
+	Pizza(string name, double price, int size, Base* base, Topping** ingredients);
+	Pizza(Pizza* pizza);
 	~Pizza();
-	bool addIngredient(Ingredient* ingredient);
-	bool removeIngredient(int index);
-	vector<Ingredient*> getIngredients();
+	string getName() const;
+	double getPrice() const;
+	void setPrice(double price);
+	void calculatePrice();
+	int getSize() const;
+	Base* getBase() const;
+	bool addTopping(Topping* ingredient);
+	bool removeTopping(int index);
+	vector<Topping*> getToppings();
+
+	Nutritions* calculateNutritions() const;
+
+	Pizza* clone() const;
 };

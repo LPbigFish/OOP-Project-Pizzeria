@@ -18,21 +18,51 @@
     <ClInclude Include="Pizza.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Ingredient.h">
+    <ClInclude Include="Topping.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Nutritions.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Order.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Ingredient.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Base.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Restaurant.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Stock.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Nutritions.cpp">
+    <ClCompile Include="Topping.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Ingredient.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Pizza.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Nutritions.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Restaurant.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Order.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Stock.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

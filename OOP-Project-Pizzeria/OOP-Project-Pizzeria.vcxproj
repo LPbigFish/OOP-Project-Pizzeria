@@ -127,13 +127,23 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Base.h" />
     <ClInclude Include="Ingredient.h" />
+    <ClInclude Include="Stock.h" />
+    <ClInclude Include="Restaurant.h" />
+    <ClInclude Include="Topping.h" />
     <ClInclude Include="Nutritions.h" />
+    <ClInclude Include="Order.h" />
     <ClInclude Include="Pizza.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Ingredient.cpp" />
+    <ClCompile Include="main.cpp" />
     <ClCompile Include="Nutritions.cpp" />
+    <ClCompile Include="Order.cpp" />
+    <ClCompile Include="Restaurant.cpp" />
+    <ClCompile Include="Stock.cpp" />
+    <ClCompile Include="Topping.cpp" />
     <ClCompile Include="Pizza.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

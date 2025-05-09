@@ -1,10 +1,10 @@
 #include "Ingredient.h"
 
-Ingredient::Ingredient(string name, double add_price, int grams)
+
+Ingredient::Ingredient(std::string name, double add_price)
 {
 	this->name = name;
-	this->add_price = add_price;
-	this->grams = grams;
+	this->price = add_price;
 	this->nutritions = nullptr;
 }
 
@@ -15,21 +15,17 @@ Ingredient::~Ingredient()
 	}
 }
 
-string Ingredient::getName()
+std::string Ingredient::getName() const
 {
-	return this->name;
+	return std::string();
 }
 
 double Ingredient::getPrice() const
 {
-	return this->add_price;
-}
-int Ingredient::getGrams() const
-{
-	return this->grams;
+	return this->price;
 }
 
-Nutritions* Ingredient::getNutritions()
+Nutritions* Ingredient::getNutritions() const
 {
 	return this->nutritions;
 }

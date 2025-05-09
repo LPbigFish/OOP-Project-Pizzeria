@@ -1,23 +1,18 @@
 #pragma once
-
+#include <string>
 #include "Nutritions.h"
 
-#include <string>
-#include <vector>
-
-using namespace std;
-
 class Ingredient {
-	string name;
-	double add_price;
-	int grams;
+protected:
+	std::string name;
+	double price = 0.0;
 	Nutritions* nutritions;
 public:
-	Ingredient(string name, double add_price, int grams);
+	Ingredient(std::string name, double price);
 	~Ingredient();
-	string getName();
+	std::string getName() const;
 	double getPrice() const;
-	int getGrams() const;
-	Nutritions* getNutritions();
+	Nutritions* getNutritions() const;
 	void setNutritions(Nutritions* nutritions);
+	virtual Ingredient* clone() = 0;
 };

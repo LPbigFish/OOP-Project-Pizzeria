@@ -1,4 +1,5 @@
 #include "Nutritions.h"
+#include <iostream>
 
 Nutritions::Nutritions(double calories, double protein, double fat, double carbohydrates)
 {
@@ -38,3 +39,22 @@ std::set<ALLERGY> Nutritions::getAllergies()
 	return this->allergies;
 }
 
+void Nutritions::add(Nutritions* n)
+{
+	this->calories += n->getCalories();
+	this->protein += n->getProtein();
+	this->fat += n->getFat();
+	this->carbohydrates += n->getCarbohydrates();
+	for (ALLERGY a : n->getAllergies()) {
+		this->addAllergy(a);
+	}
+}
+
+void Nutritions::info() const
+{
+	std::cout << "Nutrièní údaje: " << std::endl;
+	std::cout << "Kalorie: " << this->getCalories() << " kcal" << std::endl;
+	std::cout << "Bílkoviny: " << this->getProtein() << " g" << std::endl;
+	std::cout << "Sacharidy: " << this->getCarbohydrates() << " g" << std::endl;
+	std::cout << "Tuky: " << this->getFat() << " g" << std::endl;
+}
