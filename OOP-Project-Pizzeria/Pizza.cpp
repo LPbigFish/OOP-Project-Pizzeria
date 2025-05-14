@@ -2,36 +2,36 @@
 
 const int Pizza::MAX_INGREDIENTS = 10;
 
-Pizza::Pizza(string name, double price, int size)
+Pizza::Pizza(string name, int size)
 {
 	this->name = name;
-	this->price = price;
 	this->size = size;
 	this->base = nullptr;
+	this->nutritions = nullptr;
 	this->ingredients = new Topping * [MAX_INGREDIENTS];
 	for (int i = 0; i < MAX_INGREDIENTS; i++) {
 		this->ingredients[i] = nullptr;
 	}
 }
 
-Pizza::Pizza(string name, double price, int size, Base* base)
+Pizza::Pizza(string name, int size, Base* base)
 {
 	this->name = name;
-	this->price = price;
 	this->size = size;
 	this->base = base;
+	this->nutritions = nullptr;
 	this->ingredients = new Topping * [MAX_INGREDIENTS];
 	for (int i = 0; i < MAX_INGREDIENTS; i++) {
 		this->ingredients[i] = nullptr;
 	}
 }
 
-Pizza::Pizza(string name, double price, int size, Base* base, Topping** ingredients)
+Pizza::Pizza(string name, int size, Base* base, Topping** ingredients)
 {
 	this->name = name;
-	this->price = price;
 	this->size = size;
 	this->base = base;
+	this->nutritions = nullptr;
 	this->ingredients = new Topping * [MAX_INGREDIENTS];
 	for (int i = 0; i < MAX_INGREDIENTS; i++) {
 		this->ingredients[i] = nullptr;
@@ -49,6 +49,7 @@ Pizza::Pizza(Pizza* pizza)
 	this->price = pizza->price;
 	this->size = pizza->size;
 	this->base = pizza->base;
+	this->nutritions = nullptr;
 	this->ingredients = new Topping * [MAX_INGREDIENTS];
 	for (int i = 0; i < MAX_INGREDIENTS; i++) {
 		if (pizza->ingredients[i] != nullptr) {
@@ -63,6 +64,10 @@ Pizza::Pizza(Pizza* pizza)
 Pizza::~Pizza()
 {
 	delete[] this->ingredients;
+	delete this->nutritions;
+	if (this->base != nullptr) {
+		delete this->base;
+	}
 }
 
 string Pizza::getName() const
@@ -80,14 +85,14 @@ void Pizza::setPrice(double price)
 	this->price = price;
 }
 
-void Pizza::calculatePrice() {
-	double totalPrice = 0;
+double Pizza::calculatePrice() {
+	double totalPrice = 60;
 	for (int i = 0; i < MAX_INGREDIENTS; i++) {
 		if (this->ingredients[i] != nullptr) {
 			totalPrice += this->ingredients[i]->getPrice();
 		}
 	}
-	this->price += totalPrice;
+	return this->price = totalPrice;
 }
 
 int Pizza::getSize() const
@@ -95,7 +100,7 @@ int Pizza::getSize() const
 	return this->size;
 }
 
-Base* Pizza::getBase() const
+Base* Pizza::getBase()
 {
 	return this->base;
 }
@@ -135,21 +140,16 @@ vector<Topping*> Pizza::getToppings()
 	return ingredients;
 }
 
-Nutritions* Pizza::calculateNutritions() const
+Nutritions* Pizza::calculateNutritions()
 {
-	Nutritions* nutritions = new Nutritions(0, 0, 0, 0);
-	if (this->base != nullptr) {
-		nutritions->add(this->base->getNutritions());
-	}
+	Nutritions* nutritions = new Nutritions(542, 104, 6.8, 15.8);
 	for (int i = 0; i < MAX_INGREDIENTS; i++) {
 		if (this->ingredients[i] != nullptr) {
 			nutritions->add(this->ingredients[i]->getNutritions());
 		}
+		else {
+			break;
+		}
 	}
-	return nutritions;
-}
-
-Pizza* Pizza::clone() const
-{
-	return new Pizza(*this);
+	return this->nutritions = nutritions;
 }

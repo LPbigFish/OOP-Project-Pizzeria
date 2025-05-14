@@ -17,7 +17,7 @@ Ingredient::~Ingredient()
 
 std::string Ingredient::getName() const
 {
-	return std::string();
+	return this->name;
 }
 
 double Ingredient::getPrice() const

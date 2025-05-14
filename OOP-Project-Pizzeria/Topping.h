@@ -14,8 +14,5 @@ public:
 		this->grams = grams;
 	}
 	int getGrams() const;
-	~Topping();
 	virtual Topping* clone() override;
-
-	static vector<Topping*> test_toppings();
 };

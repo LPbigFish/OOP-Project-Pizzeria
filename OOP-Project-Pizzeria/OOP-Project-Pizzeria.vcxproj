@@ -128,15 +128,25 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Base.h" />
+    <ClInclude Include="Cook.h" />
+    <ClInclude Include="Delivery.h" />
+    <ClInclude Include="DeliveryOrder.h" />
+    <ClInclude Include="Employee.h" />
     <ClInclude Include="Ingredient.h" />
+    <ClInclude Include="Status.h" />
     <ClInclude Include="Stock.h" />
     <ClInclude Include="Restaurant.h" />
     <ClInclude Include="Topping.h" />
     <ClInclude Include="Nutritions.h" />
     <ClInclude Include="Order.h" />
     <ClInclude Include="Pizza.h" />
+    <ClInclude Include="Waiter.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Cook.cpp" />
+    <ClCompile Include="Delivery.cpp" />
+    <ClCompile Include="DeliveryOrder.cpp" />
+    <ClCompile Include="Employee.cpp" />
     <ClCompile Include="Ingredient.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Nutritions.cpp" />
@@ -145,6 +155,7 @@
     <ClCompile Include="Stock.cpp" />
     <ClCompile Include="Topping.cpp" />
     <ClCompile Include="Pizza.cpp" />
+    <ClCompile Include="Waiter.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

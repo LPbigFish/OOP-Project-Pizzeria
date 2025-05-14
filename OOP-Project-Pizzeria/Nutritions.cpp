@@ -29,25 +29,12 @@ double Nutritions::getCarbohydrates() const
 	return this->carbohydrates;
 }
 
-void Nutritions::addAllergy(ALLERGY allergy)
-{
-	this->allergies.insert(allergy);
-}
-
-std::set<ALLERGY> Nutritions::getAllergies()
-{
-	return this->allergies;
-}
-
 void Nutritions::add(Nutritions* n)
 {
 	this->calories += n->getCalories();
 	this->protein += n->getProtein();
 	this->fat += n->getFat();
 	this->carbohydrates += n->getCarbohydrates();
-	for (ALLERGY a : n->getAllergies()) {
-		this->addAllergy(a);
-	}
 }
 
 void Nutritions::info() const

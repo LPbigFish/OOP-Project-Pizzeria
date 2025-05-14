@@ -20,6 +20,4 @@ public:
 	void addQuantity(int amount);
 
 	bool removeQuantity(int amount);
-
-	static vector<Stock*> test_stock();
 };

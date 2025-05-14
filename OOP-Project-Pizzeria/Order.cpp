@@ -1,25 +1,15 @@
 #include "Order.h"
 
-Order::Order(string customerName, string customerAddress, string customerPhone, string customerEmail)
-{
-	this->customerName = customerName;
-	this->customerAddress = customerAddress;
-	this->customerPhone = customerPhone;
-	this->customerEmail = customerEmail;
-	this->totalPrice = 0.0;
-	this->pizza = new Pizza * [MAX_PIZZAS];
-	for (int i = 0; i < MAX_PIZZAS; i++) {
-		this->pizza[i] = nullptr;
-	}
-}
+long Order::idCounter = 0;
 
-Order::Order(string customerAddress, string customerPhone)
+Order::Order(string customerName, string customerPhone)
 {
-	this->customerName = "";
-	this->customerAddress = customerAddress;
+	this->idCounter++;
+	this->id = idCounter;
+	this->customerName = customerName;
 	this->customerPhone = customerPhone;
-	this->customerEmail = "";
 	this->totalPrice = 0.0;
+	this->type = "Odbìr";
 	this->pizza = new Pizza * [MAX_PIZZAS];
 	for (int i = 0; i < MAX_PIZZAS; i++) {
 		this->pizza[i] = nullptr;
@@ -49,12 +39,18 @@ void Order::removePizza(int index)
 
 Order::~Order()
 {
+	idCounter--;
 	for (int i = 0; i < MAX_PIZZAS; i++) {
 		if (this->pizza[i] != nullptr) {
 			delete this->pizza[i];
 		}
 	}
 	delete[] this->pizza;
+}
+
+long Order::getId() const
+{
+	return this->id;
 }
 
 Pizza** Order::getPizzas() const
@@ -67,24 +63,30 @@ string Order::getCustomerName() const
 	return this->customerName;
 }
 
-string Order::getCustomerAddress() const
-{
-	return this->customerAddress;
-}
-
 string Order::getCustomerPhone() const
 {
 	return this->customerPhone;
 }
 
-string Order::getCustomerEmail() const
+double Order::getTotalPrice()
 {
-	return this->customerEmail;
+	calculateTotalPrice();
+	return this->totalPrice;
 }
 
-double Order::getTotalPrice() const
+string Order::getType() const
 {
-	return this->totalPrice;
+	return this->type;
+}
+
+STATUS Order::getStatus() const
+{
+	return this->status;
+}
+
+void Order::setStatus(STATUS status)
+{
+	this->status = status;
 }
 
 void Order::calculateTotalPrice()
@@ -92,7 +94,7 @@ void Order::calculateTotalPrice()
 	this->totalPrice = 0.0;
 	for (int i = 0; i < MAX_PIZZAS; i++) {
 		if (this->pizza[i] != nullptr) {
-			this->totalPrice += this->pizza[i]->getPrice();
+			this->totalPrice += this->pizza[i]->calculatePrice();
 		}
 	}
 }

@@ -13,57 +13,117 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Header Files\Orders">
+      <UniqueIdentifier>{0dd9494a-71e3-4263-bd1d-9095dd815317}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Orders">
+      <UniqueIdentifier>{ef2d8e2e-a08d-4e30-b4bc-0fb4a1776bf5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Food">
+      <UniqueIdentifier>{446830e9-dc90-4eab-9e95-c02e43867d6c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Misc">
+      <UniqueIdentifier>{93ca86ac-e747-48a6-b5c6-a59e25c6c322}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Food">
+      <UniqueIdentifier>{6b7105f7-3560-4190-a36c-c5101b9f9542}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Misc">
+      <UniqueIdentifier>{cfbc4416-25c8-41bd-880e-4eae6bca318b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Employees">
+      <UniqueIdentifier>{4db2e055-7baa-4a46-98cc-0c974654400e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Employees">
+      <UniqueIdentifier>{f87c095f-3143-4e79-810b-439a481b74a5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Pizza">
+      <UniqueIdentifier>{64df5914-f105-486c-b3c9-e949b00edabc}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Pizza.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="Order.h">
+      <Filter>Header Files\Orders</Filter>
     </ClInclude>
-    <ClInclude Include="Topping.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="DeliveryOrder.h">
+      <Filter>Header Files\Orders</Filter>
     </ClInclude>
     <ClInclude Include="Nutritions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Order.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Food</Filter>
     </ClInclude>
     <ClInclude Include="Ingredient.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Food</Filter>
     </ClInclude>
     <ClInclude Include="Base.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Food</Filter>
     </ClInclude>
-    <ClInclude Include="Restaurant.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="Topping.h">
+      <Filter>Header Files\Food</Filter>
     </ClInclude>
     <ClInclude Include="Stock.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="Restaurant.h">
+      <Filter>Header Files\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="Status.h">
+      <Filter>Header Files\Orders</Filter>
+    </ClInclude>
+    <ClInclude Include="Employee.h">
+      <Filter>Header Files\Employees</Filter>
+    </ClInclude>
+    <ClInclude Include="Delivery.h">
+      <Filter>Header Files\Employees</Filter>
+    </ClInclude>
+    <ClInclude Include="Cook.h">
+      <Filter>Header Files\Employees</Filter>
+    </ClInclude>
+    <ClInclude Include="Waiter.h">
+      <Filter>Header Files\Employees</Filter>
+    </ClInclude>
+    <ClInclude Include="Pizza.h">
+      <Filter>Header Files\Pizza</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Topping.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Ingredient.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Pizza.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Nutritions.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Restaurant.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="DeliveryOrder.cpp">
+      <Filter>Source Files\Orders</Filter>
     </ClCompile>
     <ClCompile Include="Order.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Orders</Filter>
+    </ClCompile>
+    <ClCompile Include="Ingredient.cpp">
+      <Filter>Source Files\Food</Filter>
+    </ClCompile>
+    <ClCompile Include="Nutritions.cpp">
+      <Filter>Source Files\Food</Filter>
+    </ClCompile>
+    <ClCompile Include="Pizza.cpp">
+      <Filter>Source Files\Food</Filter>
+    </ClCompile>
+    <ClCompile Include="Topping.cpp">
+      <Filter>Source Files\Food</Filter>
+    </ClCompile>
+    <ClCompile Include="Restaurant.cpp">
+      <Filter>Source Files\Misc</Filter>
     </ClCompile>
     <ClCompile Include="Stock.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Misc</Filter>
+    </ClCompile>
+    <ClCompile Include="Employee.cpp">
+      <Filter>Source Files\Employees</Filter>
+    </ClCompile>
+    <ClCompile Include="Delivery.cpp">
+      <Filter>Source Files\Employees</Filter>
+    </ClCompile>
+    <ClCompile Include="Waiter.cpp">
+      <Filter>Source Files\Employees</Filter>
+    </ClCompile>
+    <ClCompile Include="Cook.cpp">
+      <Filter>Source Files\Employees</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

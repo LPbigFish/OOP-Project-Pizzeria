@@ -11,13 +11,13 @@ Restaurant::Restaurant(string name, string address, string phone, string email, 
 	for (int i = 0; i < max_orders; i++) {
 		this->orders[i] = nullptr;
 	}
-	this->pizzas = new Pizza * [max_pizzas];
-	for (int i = 0; i < max_pizzas; i++) {
-		this->pizzas[i] = nullptr;
-	}
 	this->stock_ingredients = new Stock * [max_stock];
 	for (int i = 0; i < max_stock; i++) {
 		this->stock_ingredients[i] = nullptr;
+	}
+	this->employees = new Employee * [max_employees];
+	for (int i = 0; i < max_employees; i++) {
+		this->employees[i] = nullptr;
 	}
 }
 
@@ -29,18 +29,18 @@ Restaurant::~Restaurant()
 		}
 	}
 	delete[] this->orders;
-	for (int i = 0; i < max_pizzas; i++) {
-		if (this->pizzas[i] != nullptr) {
-			delete this->pizzas[i];
-		}
-	}
-	delete[] this->pizzas;
 	for (int i = 0; i < max_stock; i++) {
 		if (this->stock_ingredients[i] != nullptr) {
 			delete this->stock_ingredients[i];
 		}
 	}
 	delete[] this->stock_ingredients;
+	for (int i = 0; i < max_employees; i++) {
+		if (this->employees[i] != nullptr) {
+			delete this->employees[i];
+		}
+	}
+	delete[] this->employees;
 }
 
 string Restaurant::getName() const
@@ -68,33 +68,34 @@ string Restaurant::getWebsite() const
 	return this->website;
 }
 
-bool Restaurant::createPizza(string name, double price, int size, Base* base, vector<string> toppings)
+Pizza* Restaurant::createPizza(string name, int size, Base* base, vector<string> toppings)
 {
-	for (int i = 0; i < max_pizzas; i++) {
-		if (this->pizzas[i] == nullptr) {
-			this->pizzas[i] = new Pizza(name, price, size, base);
-			for (string toppingName : toppings) {
-				for (int j = 0; j < max_stock; j++) {
-					if (this->stock_ingredients[j] != nullptr && this->stock_ingredients[j]->getIngredient()->getName() == toppingName) {
-						this->pizzas[i]->addTopping(((Topping*) this->stock_ingredients[j]->getIngredient()));
-						break;
-					}
-				}
+	// Kotronla zda jsou všechny suroviny dostupné
+	int totalToppings = 0;
+	for (string toppingName : toppings) {
+		for (int j = 0; j < max_stock; j++) {
+			if (this->stock_ingredients[j] != nullptr && this->stock_ingredients[j]->getIngredient()->getName() == toppingName && this->stock_ingredients[j]->getQuantity() > 0) {
+				totalToppings++;
+				break;
 			}
-			return true;
 		}
 	}
-}
+	if (totalToppings != toppings.size()) {
+		return nullptr;
+	}
 
-Order* Restaurant::createOrder(string customerAddress, string customerPhone)
-{
-	for (int i = 0; i < max_orders; i++) {
-		if (this->orders[i] == nullptr) {
-			this->orders[i] = new Order(customerAddress, customerPhone);
-			return this->orders[i];
+	// Vytvoøení pizzy
+	Pizza* pizza = new Pizza(name, size, base);
+	for (string toppingName : toppings) {
+		for (int j = 0; j < max_stock; j++) {
+			if (this->stock_ingredients[j] != nullptr && this->stock_ingredients[j]->getIngredient()->getName() == toppingName) {
+				pizza->addTopping(((Topping*) this->stock_ingredients[j]->getIngredient()));
+				this->stock_ingredients[j]->removeQuantity(1);
+				break;
+			}
 		}
 	}
-	return nullptr;
+	return pizza;
 }
 
 void Restaurant::addOrder(Order* order)
@@ -121,11 +122,6 @@ void Restaurant::removeOrder(int index)
 Order** Restaurant::getOrders() const
 {
 	return this->orders;
-}
-
-Pizza** Restaurant::getPizzas() const
-{
-	return this->pizzas;
 }
 
 Stock** Restaurant::getStock() const
@@ -162,6 +158,77 @@ Stock* Restaurant::getStockByName(string name) const
 	for (int i = 0; i < max_stock; i++) {
 		if (this->stock_ingredients[i] != nullptr && this->stock_ingredients[i]->getIngredient()->getName() == name) {
 			return this->stock_ingredients[i];
+		}
+	}
+	return nullptr;
+}
+
+Employee** Restaurant::getEmployees() const
+{
+	return this->employees;
+}
+
+bool Restaurant::addEmployee(Employee* employee)
+{
+	for (int i = 0; i < max_employees; i++) {
+		if (this->employees[i] == nullptr) {
+			this->employees[i] = employee;
+			return true;
+		}
+	}
+	return false;
+}
+
+bool Restaurant::removeEmployee(int index)
+{
+	if (index < 0 || index >= max_employees) {
+		return false;
+	}
+	if (this->employees[index] != nullptr) {
+		delete this->employees[index];
+		this->employees[index] = nullptr;
+		return true;
+	}
+	return false;
+}
+
+bool Restaurant::removeEmployeeByName(string name)
+{
+	for (int i = 0; i < max_employees; i++) {
+		if (this->employees[i] != nullptr && this->employees[i]->getName() == name) {
+			delete this->employees[i];
+			this->employees[i] = nullptr;
+			return true;
+		}
+	}
+	return false;
+}
+
+Cook* Restaurant::getWorkingCook() const
+{
+	for (int i = 0; i < max_employees; i++) {
+		if (this->employees[i] != nullptr && this->employees[i]->getPosition() == "Cook" && this->employees[i]->isWorking()) {
+			return (Cook*)this->employees[i];
+		}
+	}
+	return nullptr;
+}
+
+Waiter* Restaurant::getWorkingWaiter() const
+{
+	for (int i = 0; i < max_employees; i++) {
+		if (this->employees[i] != nullptr && this->employees[i]->getPosition() == "Waiter" && this->employees[i]->isWorking()) {
+			return (Waiter*)this->employees[i];
+		}
+	}
+	return nullptr;
+}
+
+Delivery* Restaurant::getWorkingDelivery() const
+{
+	for (int i = 0; i < max_employees; i++) {
+		if (this->employees[i] != nullptr && this->employees[i]->getPosition() == "Delivery" && this->employees[i]->isWorking()) {
+			return (Delivery*)this->employees[i];
 		}
 	}
 	return nullptr;

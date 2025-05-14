@@ -35,13 +35,3 @@ bool Stock::removeQuantity(int amount)
 	this->quantity -= amount;
 	return true;
 }
-
-vector<Stock*> Stock::test_stock()
-{
-	vector<Stock*> stock;
-	vector<Topping*> toppings = Topping::test_toppings();
-	for (int i = 0; i < toppings.size(); i++) {
-		stock.push_back(new Stock(toppings[i], 100));
-	}
-	return stock;
-}
